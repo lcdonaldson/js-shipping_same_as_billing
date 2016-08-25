@@ -1,0 +1,168 @@
+{% block extra-head %}
+
+    {% inplace_static %}
+
+    <script>
+        $(document).ready(function() {
+            $("#same_as_billing").on("change", function(){
+                if (this.checked) {
+                    $('.shipping_first_name input').val($('.first_name input').val());
+                    $('.shipping_last_name input').val($('.last_name input').val());
+                    $('.shipping_street1 input').val($('.street1 input').val());
+                    $('.shipping_street2 input').val($('.street2 input').val());
+                    $('.shipping_city input').val($('.city input').val());
+                    $('.shipping_state input').val($('.state input').val());
+                    $('.shipping_postal_code input').val($('.postal_code input').val());
+                }
+            });
+        });
+
+    </script>
+
+{% endblock %}
+
+{% include 'snippets/messages.html' %}
+
+<form method='POST'>
+
+    {% csrf_token %}
+
+    <div class='col-xs-12'>
+
+        <h3>Billing information</h3>
+
+        <div class='col-xs-12 col-sm-10 col-sm-offset-2 form-section'>
+
+            <div class='row'>
+
+                <div class="col-xs-12 form-heading">
+                    (All information required unless otherwise noted)
+                </div>
+
+                <label class="first_name col-xs-12 col-sm-6{% if checkout_form.first_name.errors %} has-error{% endif %}">
+                    first name:
+                    {{ checkout_form.first_name }}
+                    {% if checkout_form.first_name.errors %}
+                        {{ checkout_form.first_name.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="last_name col-xs-12 col-sm-6{% if checkout_form.last_name.errors %} has-error{% endif %}">
+                    last name:
+                    {{ checkout_form.last_name }}
+                    {% if checkout_form.last_name.errors %}
+                        {{ checkout_form.last_name.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="street1 col-xs-12{% if checkout_form.street1.errors %} has-error{% endif %}">
+                    address 1:
+                    {{ checkout_form.street1 }}
+                    {% if checkout_form.street1.errors %}
+                        {{ checkout_form.street1.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="street2 col-xs-12{% if checkout_form.street2.errors %} has-error{% endif %}">
+                    address 2:
+                    {{ checkout_form.street2 }}
+                </label>
+
+                <label class="city col-xs-12 col-sm-5{% if checkout_form.city.errors %} has-error{% endif %}">
+                    city:
+                    {{ checkout_form.city }}
+                    {% if checkout_form.city.errors %}
+                        {{ checkout_form.city.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="state col-xs-12 col-sm-5{% if checkout_form.state.errors %} has-error{% endif %}">
+                    state:
+                    {{ checkout_form.state }}
+                    {% if checkout_form.state.errors %}
+                        {{ checkout_form.state.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="postal_code col-xs-12 col-sm-2{% if checkout_form.postal_code.errors %} has-error{% endif %}">
+                    zip code:
+                    {{ checkout_form.postal_code }}
+                    {% if checkout_form.postal_code.errors %}
+                        {{ checkout_form.postal_code.errors }}
+                    {% endif %}
+                </label>
+
+            </div>
+
+        </div>
+
+        <h3>Shipping address</h3>
+
+        <div class='col-xs-12 col-sm-10 col-sm-offset-2 form-section'>
+
+            <div class='row'>
+
+                <div class="col-xs-12 form-heading">
+                    <label class="checkbox_wrapper"><input type="checkbox" id="same_as_billing" /> Same as billing</label>
+                </div>
+
+                <label class="shipping_first_name col-xs-12 col-sm-6{% if checkout_form.shipping_first_name.errors %} has-error{% endif %}">
+                    first name:
+                    {{ checkout_form.shipping_first_name }}
+                    {% if checkout_form.shipping_first_name.errors %}
+                        {{ checkout_form.shipping_first_name.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="shipping_last_name col-xs-12 col-sm-6{% if checkout_form.shipping_last_name.errors %} has-error{% endif %}">
+                    last name:
+                    {{ checkout_form.shipping_last_name }}
+                    {% if checkout_form.shipping_last_name.errors %}
+                        {{ checkout_form.shipping_last_name.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="shipping_street1 col-xs-12{% if checkout_form.shipping_street1.errors %} has-error{% endif %}">
+                    address 1:
+                    {{ checkout_form.shipping_street1 }}
+                    {% if checkout_form.shipping_street1.errors %}
+                        {{ checkout_form.shipping_street1.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="shipping_street2 col-xs-12{% if checkout_form.shipping_street2.errors %} has-error{% endif %}">
+                    address 2:
+                    {{ checkout_form.shipping_street2 }}
+                </label>
+
+                <label class="shipping_city col-xs-12 col-sm-5{% if checkout_form.shipping_city.errors %} has-error{% endif %}">
+                    city:
+                    {{ checkout_form.shipping_city }}
+                    {% if checkout_form.shipping_city.errors %}
+                        {{ checkout_form.shipping_city.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="shipping_state col-xs-12 col-sm-5{% if checkout_form.shipping_state.errors %} has-error{% endif %}">
+                    state:
+                    {{ checkout_form.shipping_state }}
+                    {% if checkout_form.shipping_state.errors %}
+                        {{ checkout_form.shipping_state.errors }}
+                    {% endif %}
+                </label>
+
+                <label class="shipping_postal_code col-xs-12 col-sm-2{% if checkout_form.shipping_postal_code.errors %} has-error{% endif %}">
+                    zip code:
+                    {{ checkout_form.shipping_postal_code }}
+                    {% if checkout_form.shipping_postal_code.errors %}
+                        {{ checkout_form.shipping_postal_code.errors }}
+                    {% endif %}
+                </label>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+        
+</form>
